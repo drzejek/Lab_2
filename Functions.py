@@ -1,3 +1,4 @@
+from Exceptions import *
 
 def getCoefficientOfPolynomialFromString(function):
     coefficientList = list(function)

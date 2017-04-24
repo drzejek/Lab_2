@@ -59,3 +59,4 @@ class Calculator(AbstractCalculator):
 
         print("Pochodna: ", end=' ')
         self.__printFunction()
+        return self.function

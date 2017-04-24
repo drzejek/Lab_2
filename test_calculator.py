@@ -39,7 +39,13 @@ class TestCalculator(TestCase):
         self.assertEqual(calc.divideValues(), expectValue)
 
     def test_derivativeFunction(self):
-        self.fail()
+        calc = Calculator()
+        getCoefficient = [2, 4, 5]
+        expectCoefficient = [2, 4]
+        calc.getFunction(getCoefficient)
+        calc.derivativeFunction()
+        self.assertEqual(expectCoefficient, calc.function)
+
 
 
 if __name__ == '__main__':
