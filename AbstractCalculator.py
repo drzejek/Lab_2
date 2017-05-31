@@ -4,29 +4,21 @@ class AbstractCalculator:
     __metaclass__ = ABCMeta
 
     @abstractmethod
-    def getValues(self, firstValue, secondValue):
+    def addValues(self, firstVal, secondVal):
         pass
 
     @abstractmethod
-    def getFunction(self, function):
+    def subValues(self, firstVal, secondVal):
         pass
 
     @abstractmethod
-    def addValues(self):
+    def multipleValues(self, firstVal, secondVal):
         pass
 
     @abstractmethod
-    def subValues(self):
+    def divideValues(self, firstVal, secondVal):
         pass
 
     @abstractmethod
-    def multipleValues(self):
-        pass
-
-    @abstractmethod
-    def divideValues(self):
-        pass
-
-    @abstractmethod
-    def derivativeFunction(self):
+    def derivativeFunction(self, function, x0, dx):
         pass

@@ -1,62 +1,41 @@
-from  AbstractCalculator import *
+from AbstractCalculator import *
+from Functions import *
+from scipy.misc import derivative
 
 class Calculator(AbstractCalculator):
     def __init__(self):
-        print("Calculator")
+        pass
 
-    def getValues(self, firstValue, secondValue):
-        self.firstValue = firstValue
-        self.secondValue = secondValue
+    def addValues(self, firstVal, secondVal):
+        isArgumentNumber(firstVal)
+        isArgumentNumber(secondVal)
 
-    def getFunction(self, function):
-        self.function = function
-        self.degreeList = []
-        for degree, coef in enumerate(reversed(self.function)):
-            self.degreeList.append(degree)
+        return firstVal + secondVal
 
-        self.degreeList.reverse()
+    def subValues(self, firstVal, secondVal):
+        isArgumentNumber(firstVal)
+        isArgumentNumber(secondVal)
 
-    def addValues(self):
-        sum = self.firstValue + self.secondValue
-        print(str(self.firstValue) + "+" + str(self.secondValue) + "=", end='')
-        return sum
+        return firstVal - secondVal
 
-    def subValues(self):
-        difference = self.firstValue - self.secondValue
-        print(str(self.firstValue) + "-" + str(self.secondValue) + "=", end='')
-        return difference
+    def multipleValues(self, firstVal, secondVal):
+        isArgumentNumber(firstVal)
+        isArgumentNumber(secondVal)
 
-    def multipleValues(self):
-        product = self.firstValue*self.secondValue
-        print(str(self.firstValue) + "*" + str(self.secondValue) + "=", end='')
+        product = firstVal * secondVal
         return product
 
-    def divideValues(self):
-        try:
-            quotient = self.firstValue/self.secondValue
-            print(str(self.firstValue) + "/" + str(self.secondValue) + "=", end='')
-            return quotient
-        except ZeroDivisionError:
-            print("Dzielenie przez - - niedozwolone")
+    def divideValues(self, firstVal, secondVal):
+        isArgumentNumber(firstVal)
+        isArgumentNumber(secondVal)
+        isDivisionByZero(secondVal)
 
-    def __printFunction(self):
-        for ix, coef in enumerate(self.function):
-            if coef == 0:
-                continue
-            if self.degreeList[ix] == 1:
-                print(str(coef) + "x", end=" + ")
-            elif self.degreeList[ix] == 0:
-                print(str(coef))
-            else:
-                print(str(coef) + "x^" + str(self.degreeList[ix]), end=" + ")
+        return firstVal/secondVal
 
-    def derivativeFunction(self):
-        print("Funkcja:", end=' ')
-        self.__printFunction()
+    def derivativeFunction(self, function, x0, dx):
+        isAFunction(function)
+        isArgumentNumber(x0)
+        isNumberNegative(x0)
+        isFloatInstance(dx)
 
-        self.function.pop(-1)
-        self.degreeList.pop(0)
-
-        print("Pochodna: ", end=' ')
-        self.__printFunction()
-        return self.function
+        return derivative(function, x0, dx)
